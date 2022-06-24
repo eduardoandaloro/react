@@ -1,33 +1,20 @@
 
 import React from 'react';
-import Header from "./Components/Header/Header"
+import Header from "./Components/Header"
+import ItemListContainer from './Components/ItemListContainer';
 
 
 const App = () =>{
   return(
-    <header class="encabezado" id="inicio">
 
-    <div class="contenido-navegacion">
-        <div class="logo">
-            <h2>Eduardo <span>tecnology</span></h2>
-        </div>
-        <nav class="navegacion ocultar">
-            <a href="#inicio">INICIO</a>
-            <a href="#nosotros">NOSOTROS</a>
-            <a href="#servicios">SERVICIO</a>
-            <a href="#contacto">CONTACTO</a>
-        </nav>
-        <div class="hamburguesa">
-            <span></span><span></span><span></span>
-        </div>
+    <div className='App'>
+      <Header/>
+      <ItemListContainer greeting= "bienvenido a mi página web"/>
+    
     </div>
-
-    <div class="contenido-encabezado contenedor">
-        <div class="texto-encabezado">
-            <h1>Estamos a la Vanguardia de la Tecnología</h1>
-        </div>
-    </div>
-</header>
+     
+   
+   
   );
 
 }
