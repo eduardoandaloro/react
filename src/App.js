@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Header from "./Components/Header"
-import ItemListContainer from './Components/itemLstContainer';
+import Header from "./Components/Header/Header"
+import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
 
 
 const App = () =>{

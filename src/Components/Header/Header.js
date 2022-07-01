@@ -1,6 +1,6 @@
 import React from "react";
-import CartWidget from "../Components/CartWidget";
-import "../Components/Header style/styles.css"
+import CartWidget from "./Components/CartWidget";
+import "./Components/Header style/styles.css"
 
 const Header = () => {
    return(

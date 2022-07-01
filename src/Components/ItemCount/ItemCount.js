@@ -1,5 +1,5 @@
-import "./Header"
-import "../Components/itemListContainer style/styles.css"
+import "../Components/ItemCount style/styles.css"
+
 import React,{useState} from 'react';
 
 export const ItemCount = ({initial, stock, onAdd}) =>{

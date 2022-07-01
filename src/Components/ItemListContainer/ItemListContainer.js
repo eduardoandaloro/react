@@ -1,12 +1,14 @@
 
 import React from "react";
-import "../Components/itemLstContainer style/styles.css"
-import ItemCount from "./ItemCount";
+import "../Components/ItemListContainer style/styles.css"
+import ItemCount from "../Components/ItemCount";
 
 
 const onAdd = (quantity) =>{
     console.log(`compraste ${quantity} unidades`);
 }
+
+
 const ItemListContainer = ({greeting}) =>{
     return(
         <div className="landing">
@@ -15,7 +17,7 @@ const ItemListContainer = ({greeting}) =>{
         </div>
        
     );
-}
+};
 
 
 
