@@ -1,7 +1,7 @@
 
 import React from "react";
-import "../Components/ItemListContainer style/styles.css"
-import ItemCount from "../Components/ItemCount";
+import "./styles.css"
+import ItemCount from "../../Components/ItemCount/ItemCount";
 
 
 const onAdd = (quantity) =>{

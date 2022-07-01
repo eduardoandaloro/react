@@ -1,4 +1,4 @@
-import "../Components/ItemCount style/styles.css"
+import "./styles.css"
 
 import React,{useState} from 'react';
 
