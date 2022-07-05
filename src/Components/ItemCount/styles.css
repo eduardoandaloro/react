@@ -1,7 +1,7 @@
 .counter{
     width: fit-content;
-    background-color: green;
+    background-color: white;
     margin: auto;
-    padding: 1rem;
+    padding: 4rem;
     text-align: center;
 }
