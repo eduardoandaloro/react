@@ -1,63 +1,61 @@
 import React, { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList'
-import { getData } from '../../mocks/fakeApi'
-import "./styles.css"
-import ItemCount from "../../Components/ItemCount/ItemCount";
+import { getProds } from '../../mocks/fakeApi';
+import { useParams } from 'react-router-dom';
 
 
-const onAdd = (quantity) =>{
-    console.log(`compraste ${quantity} unidades`);
-}
 
 
-const ItemListContainer = ({greeting}) =>{
-    const [productList, setProductList]=useState([])
-    const [loading, setLoading]=useState(true)
-    
-    
-  
-    //tratar la promesa con then catch finally
-      // useEffect(()=>{
-      //   getData
-      //   .then((result)=> setProductList(result))
-      //   .catch((error)=> console.log(error))
-      //   .finally(()=>setLoading(false) )
-      // },[])
-  
-  
-    //tratar la promesa con try cathc finally 
-      const getProducts = async () => {
-        try{
-          const respuesta = await getData
-          setProductList(respuesta)
-        }catch(error){
-          console.log(error)
-        }finally{
-          setLoading(false)
-        }
-      }
 
-      useEffect(()=>{
-        getProducts()
-      },[])
-   
-  
-    
-  
+const ItemListContainer = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    return(
-        <div className="landing">
-         <span>={greeting}</span>
-         <ItemCount initial={1} stock={5} onAdd={onAdd} /> 
-         {loading ? <p>Cargando...</p> : <ItemList productList={productList}/> }
-        
-        </div>
- 
-    );
-    
+  //const { categoryId } = useParams();
+  //console.log(parametro.categoryId);
+  const categoryId = 'jewelery';
+
+  //jewelery
+  useEffect(() => {
+      setLoading(true);
+
+      const URL = categoryId
+          ? `//fakestoreapi.com/products/category/${categoryId}`
+          : '//fakestoreapi.com/products';
+
+      //'https://fakestoreapi.com/products';
+
+      fetch(URL)
+          .then((res) => res.json())
+          .then((json) => setProducts(json))
+          .finally(() => {
+              setLoading(false);
+          });
+
+      /* getProds(categoryId)
+          .then((res) => {
+              setProducts(res);
+          })
+          .catch((error) => {
+              console.log(error);
+          })
+          .finally(() => {
+              setLoading(false);
+          }); */
+  }, [categoryId]);
+
+  return (
+      <div>
+          {loading ? (
+              <h2>Cargando...</h2>
+          ) : (
+              <>
+                  <ItemList items={products} />
+              </>
+          )}
+      </div>
+  );
 };
-
-
 
 
 export default ItemListContainer;

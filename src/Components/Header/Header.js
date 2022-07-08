@@ -1,38 +1,63 @@
 import React from "react";
-import CartWidget from "../../Components/CartWidget/CartWidget";
-import "./styles.css"
+import { Link } from 'react-router-dom';
+import CartWidget from "../CartWidget/CartWidget";
+
+
+
+
+const categories = [
+    
+    { 
+        id: 1,
+        path: '/',
+        name: 'INICIO',
+    }, 
+    {
+        id: 2,
+        path: '/category/nosotros',
+        name: 'NOSOTROS',
+    },
+    {
+        id: 3,
+        path: '/category/servicios',
+        name: 'SERVICIOS',
+    },
+    {
+        id: 4,
+        path: '/category/contacto',
+        name: 'CONTACTO',
+    },
+  
+];
+
 
 const Header = () => {
    return(
-    <header class="encabezado" id="inicio">
-    <div class="contenido-navegacion">
-        <div class="logo">
-            <h2>Eduardo <span>tecnology</span></h2>
-        </div>
-        <nav class="navegacion ocultar">
-            <a href="#inicio">INICIO</a>
-            <a href="#nosotros">NOSOTROS</a>
-            <a href="#servicios">SERVICIO</a>
-            <a href="#contacto">CONTACTO</a>
-        </nav>
-        <div class="hamburguesa">
-            <span></span><span></span><span></span>
-        </div>
-        <CartWidget />
-    </div>
-   
-
-    <div class="contenido-encabezado contenedor">
-        <div class="texto-encabezado">
-            <h1>Estamos a la Vanguardia de la Tecnología</h1>
-        </div>
+      <header className="encabezado" id="inicio">
 
         
-    </div>
-</header>
-   
+        <div class="contenido-navegacion">
+                <div className="logo">
+                   <h2>Eduardo <span>tecnology</span></h2>
+                </div>
+         <nav>
+            
+             <ul >
+                  {categories.map((category) => (
+                      < Link to={category.path} key={category.id}>
+                        {category.name}
+                      </Link>
+                 ))}
+             </ul>
+             <CartWidget />
+         </nav>
+           
+        
+        </div>
+      </header>
 
-   );
+
+    );
 
 }
 export default Header
