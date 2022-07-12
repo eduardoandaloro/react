@@ -1,21 +1,14 @@
-import React from 'react';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import React from 'react'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 const CartWidget = () => {
-    return (
-        <div className="shop">
-            <AiOutlineShoppingCart color="white" size={25} />
-            <p></p>
-        </div>
-    );
-};
+  return (
+    <ShoppingCartIcon color="success" fontSize="large" />
+  )
+}
 
-
-
-
-export default CartWidget;
-
-
+export default CartWidget
 
 
 

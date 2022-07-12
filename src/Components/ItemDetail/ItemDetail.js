@@ -1,19 +1,45 @@
-import React from 'react';
-import ItemCount from '../ItemCount/ItemCount';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const ItemDetail = ({ product }) => {
-    return (
-        <div className="detail">
-            <img src={product.image} alt={product.title} width="400" />
-            <div>
-                <h1>{product.title}</h1>
-                <h2>{product.description}</h2>
-                <h3>$ {product.price}</h3>
-                <h4>Stock: {product.stock}</h4>
-                <ItemCount stock={product.stock} initial={1} />
-            </div>
+  return (
+    <div style={styles.infoContainer}>
+      <img style={styles.img} src={product.image} alt={product.title} />
+      <div style={styles.infoTextContainer}>
+        <div style={styles.infoText}>
+          <h1>{product.title}</h1>
+          <span>${product.price}</span>
+          <p>{product.description}</p>
         </div>
-    );
+        <Link to="/cart">
+          <button>agregar al Carrito</button>
+        </Link>
+      </div>
+    </div>
+  );
 };
 
-export default ItemDetail;
+const styles = {
+  infoContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  img: {
+    width: "40%"
+  },
+  infoTextContainer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  infoText: {
+    padding: "10px",
+    marging: "10px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around"
+  }
+};
+
+export default ItemDetail

@@ -1,33 +1,32 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from "./Components/Header/Header"
-import ItemListContainer from "./Components/ItemListContainer/ItemListContainer";
-import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
-import Cart from './Components/Cart/Cart';
+import React from "react";
+import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
+import ItemDetailsContainer from './Components/ItemDetailContainer/ItemDetailContainer'
+import Cart from './Components/Cart/Cart'
+import Header from './Components/Header/Header';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { ClassNames } from '@emotion/react';
 
 
-    function App() {
-        return (
-            <BrowserRouter>
-                <Header />
-                <Routes>
-                    <Route path="/" element={<ItemListContainer />} />
-                    <Route
-                        path="/category/:categoryId"
-                        element={<ItemListContainer />}
-                    />
-                    <Route path="/detail/:id" element={<ItemDetailContainer />} />
-                    <Route path="/cart" element={<Cart />} />
-                </Routes>
-            </BrowserRouter>
-        );
-    }
-     
-   
-   
- 
+const App = () => {
 
-export default App;
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<ItemListContainer greeting='listas de productos'/>} />
+        <Route path="/category/:categoryId" element={<ItemListContainer greeting='listas de productos'/>}/>
+        <Route path="/product/:productId" element={<ItemDetailsContainer />}/>
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}
 
+export default App

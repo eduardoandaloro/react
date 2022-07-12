@@ -1,32 +1,34 @@
 
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
+const ItemCount = ({ initial, onAdd, stock }) => {
 
-
-
-const ItemCount = ({ initial, stock }) => {
     const [count, setCount] = useState(initial);
 
-    const add = () => {
-        stock !== count && setCount(count + 1);
-    };
+    const handlerClickAdd = () => {
+        if (count < stock) {
+            setCount(count + 1);
+        }
+    }
 
-    const substract = () => {
-        initial !== count && setCount(count - 1);
-    };
+    const handlerClickSubtrack = () => {
+        if (count > 1) {
+            setCount(count - 1);
+        }
+    }
+
+    const handlerClickAddToCart = () => {
+        onAdd(count);
+    }
+
     return (
-        <div className="count">
-            <div className="buttons">
-                <button onClick={add}>+</button>
-                <p>{count}</p>
-                <button onClick={substract}>-</button>
-            </div>
-            <div className="add-cart">
-                <button>Add to Cart!</button>
-            </div>
-        </div>
+        <>
+            <button onClick={() => handlerClickSubtrack()}>-</button>
+            <h2>{count}</h2>
+            <button onClick={() => handlerClickAdd()}>+</button>
+            <button onClick={() => handlerClickAddToCart()}>Agregar al carrito</button>
+        </>
     );
-};
+}
 
-
-export default ItemCount;
+export default ItemCount

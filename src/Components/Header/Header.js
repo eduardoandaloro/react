@@ -1,63 +1,68 @@
+import "./styles.css"
 import React from "react";
-import { Link } from 'react-router-dom';
-import CartWidget from "../CartWidget/CartWidget";
+import logo from "../../img/logo.jpeg"
+import CartWidget from '../CartWidget/CartWidget'
+import { COLORS } from "../../mocks/fakeApi";
+import { Link, NavLink } from "react-router-dom";
 
-
-
-
-const categories = [
-    
-    { 
-        id: 1,
-        path: '/',
-        name: 'INICIO',
-    }, 
-    {
-        id: 2,
-        path: '/category/nosotros',
-        name: 'NOSOTROS',
-    },
-    {
-        id: 3,
-        path: '/category/servicios',
-        name: 'SERVICIOS',
-    },
-    {
-        id: 4,
-        path: '/category/contacto',
-        name: 'CONTACTO',
-    },
-  
-];
-
+const viewport = {
+    width: document.documentElement.clientWidth,
+    height: document.documentElement.clientHeight
+}
 
 const Header = () => {
-   return(
-      <header className="encabezado" id="inicio">
 
-        
-        <div class="contenido-navegacion">
-                <div className="logo">
-                   <h2>Eduardo <span>tecnology</span></h2>
-                </div>
-         <nav>
-            
-             <ul >
-                  {categories.map((category) => (
-                      < Link to={category.path} key={category.id}>
-                        {category.name}
-                      </Link>
-                 ))}
-             </ul>
-             <CartWidget />
-         </nav>
-           
-        
-        </div>
-      </header>
+    const categories = [
+        { name: "electronic", id: 0, route: "/category/electronics" },
+        { name: "jewelery", id: 1, route: "/category/jewelery" },
+        { name: "men's clothing", id: 2, route: "/category/men's clothing" },
+        { name: "women's clothing", id: 3, route: "/category/women's clothing" },
+    ];
 
+    return (
+        <header style={styles.container}>
 
-    );
+            <div style={styles.branchContainer}>
+                <Link to="/"><img style={styles.logo} src={logo} alt="" /></Link>
+                <h1 style={styles.title}>Eduardo tecnology</h1>
+            </div>
 
+            <div style={styles.links}>
+                <nav>
+                    {categories.map((category) => <NavLink key={category.id} style={styles.link} to={category.route}>{category.name}</NavLink>)}
+                </nav>
+                <Link to="/cart"><CartWidget /></Link>
+            </div>
+        </header >
+    )
 }
+
+const styles = {
+    container: {
+        display: viewport.width > 900 ? 'flex' : 'none',
+        backgroundColor: COLORS.green,
+        justifyContent: "space-between",
+        alignItems: "center",
+        width: "100%"
+    },
+    branchContainer: {
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center"
+    },
+    title: {
+        fontSize: 25
+    },
+    links: {
+        display: "flex"
+    },
+    link: {
+        fontSize: 16,
+        padding: 20
+    },
+    logo: {
+        height: 80
+    }
+};
+
 export default Header
