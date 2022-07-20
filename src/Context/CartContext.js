@@ -9,6 +9,9 @@ const CartCustomProvider = ({ children }) => {
     const [qtyProducts, setQtyProducts] = useState(0);
 
     const getQtyProducts = () => {
+        let qty = 0;
+        products.forEach(product => qty += product.qty);
+        setQtyProducts(qty);
         
     }
 
@@ -19,17 +22,29 @@ const CartCustomProvider = ({ children }) => {
 
 
     const addProduct = (product) => {
+        if (isInCart(product.id)) {
+            const found = products.find(p => p.id === product.id);
+            const index = products.indexOf(found);
+            const aux = [...products];
+            setProducts(aux);
+        }else {
+            setProducts([...products, product]);
+        };
         
     }
 
     const deleteProduct = (id) => {
+        setProducts(products.filter(product => product.id !== id));
+        
     };
 
     const isInCart = (id) => {
+        return products.some(products => products.id === id);
     };
 
     const clear = () => {
         setProducts([]);
+        
     }
 
     return (

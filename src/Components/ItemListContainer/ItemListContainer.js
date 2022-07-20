@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import CircularProgress from '@mui/material/CircularProgress';
 import ItemList from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
+import {db} from '../../Firebase/Firebase';
+import { getDocs, collection, query } from 'firebase/firestore';
 
 export const ItemListContainer = ({ greeting }) => {
 
@@ -10,9 +12,23 @@ export const ItemListContainer = ({ greeting }) => {
 
     const { categoryId } = useParams();
 
+    
+
 
 
     useEffect(() => {
+
+        const productsColletion = collection(db,'Itemcoleccion');
+        getDocs(productsColletion)
+        .then(result => {
+            //console.log(result.docs);
+
+        })
+
+
+
+
+
         const URL = categoryId
             ? `https://fakestoreapi.com/products/category/${categoryId}`
             : 'https://fakestoreapi.com/products'
