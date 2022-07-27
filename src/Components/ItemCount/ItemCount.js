@@ -31,8 +31,8 @@ const ItemCount = ({ initial, onAdd, stock }) => {
             <button style={styles.buttonAdd} onClick={() => handlerClickAddToCart()}>Agregar al carrito</button>
         </div>
     );
-    
 }
+
 const styles = {
     container: {
         display: 'flex',
@@ -66,6 +66,8 @@ const styles = {
         fontSize: "20px",
         fontWeight: "bold",
     }
+
 }
+
 
 export default ItemCount

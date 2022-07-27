@@ -4,15 +4,10 @@ import ItemCount from "../../Components/ItemCount/ItemCount";
 import { cartContext } from '../../Context/CartContext';
 
 
-
-
-
-
 const ItemDetail = ({ product }) => {
+
   const [buyFinalized, setBuyFinalized] = useState(false)
   const { addProduct } = useContext(cartContext);
-
-  
 
   const onAdd = (count) => {
     addProduct({...product, qty: count});
@@ -62,6 +57,8 @@ const styles = {
     justifyContent: "space-around"
   }
 };
+
+
 
 
 export default ItemDetail

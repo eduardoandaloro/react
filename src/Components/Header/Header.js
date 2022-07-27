@@ -43,7 +43,8 @@ const styles = {
         backgroundColor: COLORS.green,
         justifyContent: "space-between",
         alignItems: "center",
-        width: "100%"
+        width: "100%",
+        
     },
     branchContainer: {
         display: "flex",
@@ -63,6 +64,6 @@ const styles = {
     logo: {
         height: 80
     }
-};
-
+    
+}
 export default Header

@@ -1,31 +1,45 @@
-import React, {useContext} from 'react'
-import { cartContext } from '../../Context/CartContext'
-import { link } from "react-router-dom"
+
+import React, { useState, useContext} from 'react'
+//import { cartContext } from '../../Context/CartContext'
+import { db } from '../../Firebase/Firebase'
+import { collection, addDoc, serverTimestamp, doc, updateDoc } from 'firebase/firestore'
 
 const Cart = () => {
-  
-  const { products }  = useContext(cartContext);
 
-  
-  return (
+  //const {products} = useContext(cartContext)
 
-    <>
-      {
-        products.length === 0
-        ?
-         <link to="/">no hay productos dirigete a este sitio </link>
-        :
-  
-        <>
-         {products.map(product => <h2 key={product.id}>{product.title}</h2>)}
-        </>
-      }
-    </>
- 
-  )
+  const [idVenta, setIdVenta] = useState("")
+
+  const datosComprador = {
+    nombre: 'damian',
+    apellido: 'diaz',
+    email: 'damiandiaz@gmail.com',
+  }
+
+  const finalizarCompra = () => {
+    const ventasCollection = collection(db, 'ventas');
+    addDoc(ventasCollection, {
+      datosComprador,
+      items: [{ nombre: "papa",id:1 }, { nombre: "batata",id:2 }],
+      date: serverTimestamp(),
+      total: 500
+    })
+    .then((result) =>{
+      setIdVenta(result.id)
+    })
+    
+    const updateCollection = doc(db, "Itemcoleccion","QgA8RUqvD4MvgeBUGk70");
+    updateDoc(updateCollection,{stock:8})
 
   }
 
+  return (
+    <>
+      <div>Cart</div>
+      <button onClick={finalizarCompra}>Concretar Compra</button>
+    </>
+  )
+}
 
 
 
