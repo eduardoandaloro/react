@@ -1,38 +1,39 @@
+
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import React from "react";
-import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
-import ItemDetailsContainer from './Components/ItemDetailContainer/ItemDetailContainer'
-import Cart from './Components/Cart/Cart'
-import Header from './Components/Header/Header';
-import CartCustomProvider from './Context/CartContext'
+import CheckoutCard from './components/CheckoutCard';
+import CheckoutPage from './components/CheckoutPage';
+import Navbar from './components/Navbar';
+import Product from './components/Product';
+import Products from './components/Products';
+import {Switch, BrowserRouter as Router, Route} from "react-router-dom"
+import SignIn from './components/Signin';
+import SignUp from './components/Signup';
 
 
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-
-
-const App = () => {
-
+function App() {
   return (
-      <BrowserRouter>
-        <CartCustomProvider >
-          <Header />
-          <Routes>
-            <Route path="/" element={<ItemListContainer greeting='Bienvenido' />} />
-            <Route path="/category/:categoryId" element={<ItemListContainer greeting='Bienvenido' />} />
-            <Route path="/product/:productId" element={<ItemDetailsContainer />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </CartCustomProvider>
-      </BrowserRouter>
-  )
+    <Router>
+    <div className="App">
+      <Navbar/>
+      <Switch>
+      <Route path="/signin">
+         <SignIn/>
+       </Route>
+      <Route path="/signup">
+         <SignUp/>
+       </Route>
+      <Route path="/checkout-page">
+         <CheckoutPage/>
+       </Route>
+       <Route path="/">
+         <Products/>
+       </Route>
+      </Switch>
+    </div>
+    </Router>
+   
+  );
 }
 
-
-export default App
+export default App;
